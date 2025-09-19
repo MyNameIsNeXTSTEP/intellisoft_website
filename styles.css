@@ -1,0 +1,418 @@
+/* Custom CSS for IntelliSoft Landing Page */
+
+/* CSS Variables for Theming */
+:root {
+  /* Light theme colors */
+  --bg-primary: #f9fafb;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #000000;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --border-color: #d1d5db;
+  --primary-color: #3b82f6;
+  --primary-hover: #1e40af;
+  --accent-color: #f59e0b;
+  --accent-hover: #eab308;
+  --navbar-bg: rgba(255, 255, 255, 0.95);
+  --navbar-border: rgba(255, 255, 255, 0.1);
+  --card-bg: #ffffff;
+  --hover-bg: #f3f4f6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --gradient-from: #2563eb;
+  --gradient-to: #7c3aed;
+  --nav-link-color: #ffffff;
+  --hero-bg: #ffffff;
+  --hero-text: #000000;
+  --header-color: #1f2937;
+}
+
+/* Dark theme colors */
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --border-color: #475569;
+  --primary-color: #60a5fa;
+  --primary-hover: #3b82f6;
+  --accent-color: #fbbf24;
+  --accent-hover: #f59e0b;
+  --navbar-bg: rgba(30, 41, 59, 0.95);
+  --navbar-border: rgba(255, 255, 255, 0.1);
+  --card-bg: #1e293b;
+  --hover-bg: #334155;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --gradient-from: #1e40af;
+  --gradient-to: #6d28d9;
+  --nav-link-color: #000000;
+  --hero-bg: #0f172a;
+  --hero-text: #ffffff;
+  --header-color: #ffffff;
+}
+
+/* Auto theme detection */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    --border-color: #475569;
+    --primary-color: #60a5fa;
+    --primary-hover: #3b82f6;
+    --accent-color: #fbbf24;
+    --accent-hover: #f59e0b;
+    --navbar-bg: rgba(30, 41, 59, 0.95);
+    --navbar-border: rgba(255, 255, 255, 0.1);
+    --card-bg: #1e293b;
+    --hover-bg: #334155;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --gradient-from: #1e40af;
+    --gradient-to: #6d28d9;
+    --nav-link-color: #000000;
+    --hero-bg: #0f172a;
+    --hero-text: #ffffff;
+    --header-color: #ffffff;
+  }
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDelay {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-fade-in-delay {
+  animation: fadeInDelay 1s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+/* Custom hover effects */
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--bg-primary);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Custom button styles */
+.cta-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+/* Form focus styles */
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: var(--primary-color);
+}
+
+/* Card hover effects */
+.hover-card {
+  transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Loading animation for form submission */
+.loading {
+  position: relative;
+  color: transparent;
+}
+
+.loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Parallax effect for hero section */
+.hero-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}
+
+/* Mobile menu animation */
+#mobile-menu {
+  transition: all 0.3s ease;
+  transform-origin: top;
+}
+
+#mobile-menu.show {
+  animation: slideDown 0.3s ease forwards;
+}
+
+#mobile-menu.hide {
+  animation: slideUp 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  to {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  .hero-text {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus,
+a:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Theme transition */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Theme-specific overrides for better dark mode support */
+[data-theme="dark"] .bg-gray-50 {
+  background-color: var(--bg-primary) !important;
+}
+
+[data-theme="dark"] .bg-white {
+  background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .bg-gray-100 {
+  background-color: var(--hover-bg) !important;
+}
+
+[data-theme="dark"] .text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .text-gray-800 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-gray-400 {
+  color: var(--text-tertiary) !important;
+}
+
+[data-theme="dark"] .border-gray-300 {
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .border-gray-700 {
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .bg-gray-900 {
+  background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .shadow-lg {
+  box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -2px var(--shadow-color) !important;
+}
+
+[data-theme="dark"] .shadow-md {
+  box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -1px var(--shadow-color) !important;
+}
+
+/* Navigation link colors */
+.nav-link {
+  color: var(--nav-link-color) !important;
+}
+
+.nav-link:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Hero section styling */
+#home {
+  background-color: var(--hero-bg) !important;
+}
+
+#home h2 {
+  color: var(--hero-text) !important;
+  font-size: 4rem !important; /* Increased from text-4xl */
+}
+
+@media (min-width: 768px) {
+  #home h2 {
+    font-size: 7rem !important; /* Increased from text-6xl */
+  }
+}
+
+/* Headers styling for dark theme */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: var(--header-color) !important;
+}
+
+/* Hero text color follows theme */
+#home h2,
+#home p {
+  color: var(--hero-text) !important;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  * {
+    background: white !important;
+    color: black !important;
+  }
+}
+

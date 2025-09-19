@@ -1,2 +1,2 @@
 # intellisoft_website
-Вебсайт для своей компании Intellisoft
+Вебсайт для (своей) компании: `Intellisoft`
