@@ -267,6 +267,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const heroTitle = document.querySelector("#home h2");
   const heroSubtitle1 = document.getElementById("hero-subtitle-1");
   const heroSubtitle2 = document.getElementById("hero-subtitle-2");
+  const scrollDownBtn = document.getElementById("scroll-down-btn");
   
   if (heroTitle && heroSubtitle1) {
     // Store original subtitle text and clear it for typewriter effect
@@ -276,6 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (heroSubtitle1) heroSubtitle1.style.opacity = "0";
     if (heroSubtitle2) heroSubtitle2.style.opacity = "0";
     if (ctaButton) ctaButton.style.opacity = "0";
+    if (scrollDownBtn) scrollDownBtn.style.opacity = "0";
     // Start with zoom effect on hero title
     setTimeout(() => {
       heroTitle.classList.add("animate-hero-zoom");
@@ -304,14 +306,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 ctaButton.classList.add("animate-fade-in");
                 ctaButton.style.opacity = "1";
               }
-            }, 600);
+              if (scrollDownBtn) {
+                scrollDownBtn.classList.add("animate-fade-in");
+                  scrollDownBtn.style.opacity = "1";
+              }
+            }, 400);
           }
         };
         // Start typewriter effect on subtitle
         setTimeout(typeWriter, 100);
-        
       }, 600); // Wait for zoom animation to complete
-    }, 1000); // Start zoom effect immediately
+    }, 800); // Start zoom effect immediately
   }
   // Simple analytics tracking (replace with real analytics)
   trackPageView();

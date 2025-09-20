@@ -185,7 +185,7 @@
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div class="text-center">
-          <h2 class="text-4xl md:text-6xl font-bold mb-12 mt-40">
+          <h2 class="text-4xl md:text-6xl font-bold mb-12 mt-20">
             IntelliSoft
           </h2>
           <h3 class="text-xl md:text-2xl mb-6 max-w-3xl mx-auto" id="hero-subtitle-1">Передовые решения для вашего бизнеса</h3>
@@ -200,6 +200,31 @@
           >
             Связаться с нами
           </button>
+          
+          <!-- Scroll Down Icon -->
+          <div class="mt-16 flex justify-center" id="scroll-down-btn">
+            <button 
+              id="scroll-down-btn"
+              class="group cursor-pointer p-3 transition-all duration-300 hover:scale-110"
+              onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})"
+              aria-label="Scroll down to about section"
+            >
+              <svg 
+                class="w-8 h-8 text-gray-600 group-hover:text-primary transition-colors duration-300 animate-bounce" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  stroke-width="2" 
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </section>
