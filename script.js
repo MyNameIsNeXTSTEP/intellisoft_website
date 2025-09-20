@@ -1,6 +1,5 @@
 // IntelliSoft Landing Page JavaScript
 
-// Theme management
 function getSystemTheme() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
@@ -265,11 +264,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Typing effect for hero section (optional)
-  const heroTitle = document.querySelector("#home h2");
+  const heroTitle = document.querySelector("#home h3");
   if (heroTitle) {
     const text = heroTitle.textContent;
     heroTitle.textContent = "";
-
     let i = 0;
     const typeWriter = () => {
       if (i < text.length) {
