@@ -263,24 +263,56 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Typing effect for hero section (optional)
-  const heroTitle = document.querySelector("#home h3");
-  if (heroTitle) {
-    const text = heroTitle.textContent;
-    heroTitle.textContent = "";
-    let i = 0;
-    const typeWriter = () => {
-      if (i < text.length) {
-        heroTitle.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
-      }
-    };
-
-    // Start typing effect after a short delay
-    setTimeout(typeWriter, 500);
+  // Hero animation sequence: zoom title first, then typewriter on subtitle
+  const heroTitle = document.querySelector("#home h2");
+  const heroSubtitle1 = document.getElementById("hero-subtitle-1");
+  const heroSubtitle2 = document.getElementById("hero-subtitle-2");
+  
+  if (heroTitle && heroSubtitle1) {
+    // Store original subtitle text and clear it for typewriter effect
+    const subtitleText = heroSubtitle1.textContent;
+    heroSubtitle1.textContent = "";
+    // Hide subtitles initially  
+    if (heroSubtitle1) heroSubtitle1.style.opacity = "0";
+    if (heroSubtitle2) heroSubtitle2.style.opacity = "0";
+    if (ctaButton) ctaButton.style.opacity = "0";
+    // Start with zoom effect on hero title
+    setTimeout(() => {
+      heroTitle.classList.add("animate-hero-zoom");
+      // After zoom completes, start typewriter on first subtitle
+      setTimeout(() => {
+        heroTitle.classList.remove("animate-hero-zoom");
+        // Show first subtitle and start typewriter effect
+        heroSubtitle1.style.opacity = "1";
+        let i = 0;
+        const typeWriter = () => {
+          if (i < subtitleText.length) {
+            heroSubtitle1.textContent += subtitleText.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50);
+          } else {
+            // Typewriter complete, fade in second subtitle
+            setTimeout(() => {
+              if (heroSubtitle2) {
+                heroSubtitle2.classList.add("animate-fade-in");
+                heroSubtitle2.style.opacity = "1";
+              }
+            }, 300);
+            // Fade in CTA button after a delay
+            setTimeout(() => {
+              if (ctaButton) {
+                ctaButton.classList.add("animate-fade-in");
+                ctaButton.style.opacity = "1";
+              }
+            }, 600);
+          }
+        };
+        // Start typewriter effect on subtitle
+        setTimeout(typeWriter, 100);
+        
+      }, 600); // Wait for zoom animation to complete
+    }, 1000); // Start zoom effect immediately
   }
-
   // Simple analytics tracking (replace with real analytics)
   trackPageView();
   trackButtonClicks();
